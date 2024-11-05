@@ -1,0 +1,17 @@
+#lang racket
+
+;Aufgabe 1
+;(define (nat-wurzel x)
+ ;(define (wurzel-iter summe zähler ergebnis)
+  ; (if (=summe x)
+   ;   ergebnis ) ))
+
+(define (nat-wurzel x)
+  (define (wurzel-iter summe zähler ergebnis)
+    (if (= summe x) ergebnis
+        (wurzel-iter (+ summe zähler) (+ zähler 2) (+ ergebnis 1)
+   )
+  )
+ )
+  (wurzel-iter 0 1 0)
+)
