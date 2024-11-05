@@ -1,0 +1,19 @@
+#lang racket
+;Aufgabe 1
+(define (f a b c d e)
+  (or (and a b d e)
+      (not (or (and c a d)
+               (not (and a c)))))
+  )
+
+;Aufgabe 2
+(define (tetraederzahl n)
+  tetraederzahl = (/(* n (+ n 1) (+ n 2)) 6))
+
+;Aufgabe 3
+(define (preis kwh)
+  (cond ((< kwh 2000) (* kwh 0.2 1.1))
+        (( >= kwh 3500) (* kwh 0.2 0.95))
+        (else (* 0.2 kwh))
+       )
+  )
