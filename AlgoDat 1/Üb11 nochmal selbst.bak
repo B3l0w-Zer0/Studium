@@ -1,0 +1,28 @@
+#lang racket
+;Aufgabe 1
+(define (werte-aus term zuweisung)
+  (define (iter1 term operand1 operand2 zuweisung op result counter1 counter2)
+    (if (= counter1 0)    
+        (iter1 term (if (number? (cadr term))
+                        (cadr term)
+                        (cdr (car zuweisung)))  (if (char? (caddr term))
+                                                                    (cdr (cdr zuweisung))
+                                                                    (caddr term))
+                        zuweisung (car term) result 1 0)
+        (if (= counter2 0)
+            (iter1 term operand1 operand2 zuweisung op (op (operand1 operand2)) 1 1)
+             result
+             )
+        )
+          
+        )(iter1 term 0 0 zuweisung '() 0 0 0)
+  
+  )
+
+          
+          
+
+(werte-aus '(+ x 2) '((x 7)))
+(werte-aus '(* x y) '((x 3) (y 5)))
+(werte-aus '(/ a b) '((a 6) (b 3)))
+		

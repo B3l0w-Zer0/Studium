@@ -1,0 +1,44 @@
+#lang racket
+;Aufgabe 1
+(define (machen . strings)
+  (define (machen-iter strings current tempword result counter)
+    (if (null? strings)
+        result
+        (if (= counter 3)
+            (if (eq? current "x")
+                (machen-iter (cdr strings) '() tempword (append result (list tempword)) 0)
+                (machen-iter (cdr strings) '() tempword result 0)
+                )
+            (machen-iter (cdr strings) (car strings) (append tempword (cons (car strings) '())) result (+ counter 1))
+            )
+        )
+    ) (machen-iter strings (list strings) '() '() 0)
+  )
+;(machen "ein" "satz" "mit" "nix" "x" "ausser" "xxx")
+
+;Aufgabe 2
+(define (tauschen vektor)
+  (define (tauschen-iter list listcheck result counter counter2 left right middle)
+    (if (null? listcheck)
+        (if (= counter2 counter)
+            (if (odd? counter2)
+            (list->vector (append right (cons middle left)))
+            (list->vector (append right left)))
+            (if (and (not (= (+ counter2 0.5) (/ counter 2)))(< counter2 (/ counter 2)))
+                (tauschen-iter (cdr list) listcheck result counter (+ counter2 1) (append left (cons (car list) '())) right middle)
+                (if (> counter2 (/ counter 2)) 
+                    (tauschen-iter (cdr list) listcheck result counter (+ counter2 1) left (append right (cons (car list) '())) middle)
+                    (if (= (+ counter2 0.5) (/ counter 2))
+                        (tauschen-iter (cdr list) listcheck result counter (+ counter2 1) left right (car list))
+                        (tauschen-iter list listcheck result counter counter2 left right middle))
+                )
+               ) 
+                
+            )
+        
+            
+        (tauschen-iter list (cdr listcheck) result (+ counter 1) counter2 left right middle)
+        )
+    ) (tauschen-iter (vector->list vektor) (vector->list vektor) '() 0 0 '() '() '())
+  )
+(tauschen (vector 1 2 3 4 5 6))
