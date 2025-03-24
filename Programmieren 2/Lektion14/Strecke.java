@@ -6,15 +6,15 @@ public class Strecke {
 
     public Strecke(int A, int B) {
         if(A<0||B<0){
-            throw new IllegalArgumentException("A and B are negative");
+            throw new IllegalArgumentException("A or B are negative");
         }
-
-        if (A > B) {
+        else if (A > B) {
             this.A = B;
             this.B = A;
+        }else {
+            this.A = A;
+            this.B = B;
         }
-        this.A = A;
-        this.B = B;
     }
 
 public int getA (){
@@ -47,8 +47,11 @@ public String toString() {
     }
 }
 public static void main(String[] args) {
-    Strecke strecke = new Strecke(2,1);
+    Strecke strecke = new Strecke(6,3);
     System.out.println(strecke);
+
+}
+}
 
 }
 }
