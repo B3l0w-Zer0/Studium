@@ -37,4 +37,13 @@ public class TestStrecke {
         Strecke streckeversch = new Strecke(1, 4);
         assertEquals(true, streckeversch.ueberschneiden(1, 4));
     }
+    @Test
+    public void ANeg(){
+        try{
+        Strecke streckeA = new Strecke(-1, 2);
+        fail("Runtime Exception Expected");
+    } catch(Exception e){
+            assertEquals("A or B are negative", e.getMessage());
+        }
+    }
 }
